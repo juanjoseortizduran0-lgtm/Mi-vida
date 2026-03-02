@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Mi Niña 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    font-family:'Quicksand', sans-serif;
+    background:linear-gradient(to bottom,#fdfcfb,#e2f7e1);
+    overflow-x:hidden;
+    position:relative;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:url("https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=1974&auto=format&fit=crop") center/cover no-repeat;
+    opacity:0.25;
+    filter:blur(2px);
+    z-index:0;
+}
+
+.container{
+    position:relative;
+    z-index:2;
+    min-height:100vh;
+    padding:60px 20px 100px;
+    text-align:center;
+}
+
+h1{
+    font-family:'Great Vibes', cursive;
+    font-size:60px;
+    color:#6a994e;
+    margin-bottom:10px;
+}
+
+.intro{
+    font-size:20px;
+    color:#5f7d5f;
+    margin-bottom:15px;
+}
+
+.contador{
+    margin-top:15px;
+    font-size:18px;
+    color:#4f6f52;
+}
+
+.imagen-container{
+    margin-top:40px;
+    height:340px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    perspective:1000px;
+    position:relative;
+}
+
+.rotacion{
+    position:relative;
+    width:300px;
+    height:300px;
+}
+
+.rotacion img{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(100,150,100,0.35);
+    opacity:0;
+    transition:opacity 2s ease, transform 2s ease;
+}
+
+.rotacion img.activa{
+    opacity:1;
+    transform:rotateY(0deg) scale(1);
+}
+
+.rotacion img.saliendo{
+    opacity:0;
+    transform:rotateY(90deg) scale(0.95);
+}
+
+.frase, .mensaje-extra{
+    margin-top:30px;
+    max-width:600px;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:18px;
+    line-height:1.8;
+    color:#3c5a40;
+}
+
+.mensaje-extra{
+    font-weight:600;
+    margin-top:25px;
+}
+
+.flotando{
+    position:fixed;
+    bottom:-50px;
+    font-size:22px;
+    animation:subir 14s linear infinite;
+    opacity:0.85;
+    z-index:1;
+}
+
+@keyframes subir{
+    from{transform:translateY(0);}
+    to{transform:translateY(-120vh);}
+}
+
+#botonMusica{
+    margin-top:35px;
+    padding:12px 28px;
+    border-radius:25px;
+    border:none;
+    background:#a7d7a7;
+    color:#2d4a2d;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.4s;
+}
+
+#botonMusica:hover{
+    background:#8ecf8e;
+    transform:scale(1.08);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Feliz Día de la Mujer, Mi Niña 🤍</h1>
+
+<div class="intro">Eres calma, eres luz, eres vida.</div>
+
+<div class="contador" id="contador"></div>
+
+<div class="imagen-container">
+    <div class="rotacion" id="rotacion"></div>
+</div>
+
+<div class="frase">
+Desde el 9 de marzo de 2024 mi corazón aprendió una nueva forma de amar.
+Contigo todo se siente más libre, más bonito, más verdadero.
+</div>
+
+<div class="mensaje-extra">
+Hoy celebro tu esencia, tu fuerza tranquila y la mujer increíble que eres🤍
+</div>
+
+<button id="botonMusica">🌿 Activar música</button>
+
+</div>
+
+<audio id="musica" loop>
+<source src="no hay problema.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* =========================================================
+   CAMBIA AQUÍ LOS NOMBRES DE TUS IMÁGENES (FORMATO .jpeg)
+========================================================= */
+
+const imagenes = [
+"30.jpeg",
+"33.jpeg",
+"35.jpeg",
+"42.jpeg",
+"44.jpeg",
+"45.jpeg",
+"49.jpeg",
+"50.jpeg",
+"54.jpeg",
+"55.jpeg"
+];
+
+/* ========================================================= */
+
+const contenedor = document.getElementById("rotacion");
+
+imagenes.forEach((src, index) => {
+    const img = document.createElement("img");
+    img.src = src;
+    if(index === 0) img.classList.add("activa");
+    contenedor.appendChild(img);
+});
+
+let indexActual = 0;
+const listaImg = document.querySelectorAll(".rotacion img");
+
+setInterval(() => {
+    listaImg[indexActual].classList.remove("activa");
+    listaImg[indexActual].classList.add("saliendo");
+
+    indexActual = (indexActual + 1) % listaImg.length;
+
+    listaImg[indexActual].classList.add("activa");
+
+    setTimeout(() => {
+        listaImg.forEach(img => img.classList.remove("saliendo"));
+    }, 2000);
+
+}, 5000);
+
+
+// CONTADOR
+const fechaInicio = new Date(2024, 2, 9);
+
+function actualizarContador(){
+    const ahora = new Date();
+    const diferencia = ahora - fechaInicio;
+    const dias = Math.floor(diferencia / (1000*60*60*24));
+    document.getElementById("contador").innerHTML =
+    "Han pasado " + dias + " días desde que comenzó nuestra historia 🤍";
+}
+actualizarContador();
+setInterval(actualizarContador,1000);
+
+// MÚSICA
+const musica = document.getElementById("musica");
+musica.volume = 0.3;
+document.getElementById("botonMusica").addEventListener("click", function(){
+    musica.play();
+    this.style.display="none";
+});
+
+// FLORES Y CORAZONES
+function crearElemento(){
+    const elemento=document.createElement("div");
+    elemento.classList.add("flotando");
+
+    const simbolos=["🌸","🌿","🤍","🍃"];
+    elemento.innerHTML=simbolos[Math.floor(Math.random()*simbolos.length)];
+
+    elemento.style.left=Math.random()*100+"vw";
+    elemento.style.fontSize=Math.random()*22+16+"px";
+
+    document.body.appendChild(elemento);
+
+    setTimeout(()=>{elemento.remove();},14000);
+}
+setInterval(crearElemento,1100);
+
+</script>
+
+</body>
+</html>
