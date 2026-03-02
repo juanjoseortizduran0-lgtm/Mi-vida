@@ -13,6 +13,7 @@ body {
     font-family: 'Segoe UI', sans-serif;
     text-align: center;
     overflow-x: hidden;
+    background: #fdf6f9;
 }
 
 /* Fondo floral */
@@ -23,30 +24,43 @@ body {
     width: 100%;
     height: 100%;
     background: url("fondo-floral.jpg") center/cover no-repeat;
+    z-index: -3;
+}
+
+/* Capa translúcida */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.7);
     z-index: -2;
 }
 
-/* Capa translúcida para mejorar lectura */
-.overlay {
+/* Flores flotantes */
+.flower {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.65);
+    width: 40px;
+    animation: float 15s linear infinite;
+    opacity: 0.8;
     z-index: -1;
 }
 
-/* Contenido principal */
+@keyframes float {
+    from {
+        transform: translateY(100vh) rotate(0deg);
+    }
+    to {
+        transform: translateY(-10vh) rotate(360deg);
+    }
+}
+
 .container {
     padding: 50px 20px;
 }
 
-/* Títulos */
 h1 {
-    color: #b25c7a; /* rosa romántico profundo */
+    color: #b25c7a;
     font-size: 38px;
-    margin-bottom: 10px;
 }
 
 h2 {
@@ -54,7 +68,6 @@ h2 {
     font-weight: 400;
 }
 
-/* Texto general */
 p {
     color: #5e5560;
     font-size: 18px;
@@ -63,43 +76,41 @@ p {
     line-height: 1.6;
 }
 
-/* Corazón blanco */
 .heart {
-    color: white;
     font-size: 28px;
-    text-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
-/* Carrusel */
-.carousel {
+/* CARRUSEL 3D REAL */
+.carousel-container {
+    perspective: 1200px;
+    width: 300px;
+    height: 300px;
+    margin: 50px auto;
     position: relative;
+}
+
+.carousel {
     width: 100%;
-    max-width: 700px;
-    margin: 40px auto;
-    perspective: 1000px;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    animation: rotate 20s infinite linear;
 }
 
 .carousel img {
-    width: 100%;
-    border-radius: 20px;
     position: absolute;
+    width: 200px;
+    height: 260px;
     left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    top: 50%;
+    transform-origin: center center -400px;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
-.carousel img.active {
-    opacity: 1;
-}
-
-/* Animación suave */
-@keyframes fade {
-    0% {opacity: 0;}
-    10% {opacity: 1;}
-    90% {opacity: 1;}
-    100% {opacity: 0;}
+@keyframes rotate {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
 }
 
 </style>
@@ -112,21 +123,14 @@ p {
 
 <div class="container">
 
-    <div class="heart">🤍</div>
+<div class="heart">🤍</div>
 
-    <h1>Eres calma, eres luz, eres vida.</h1>
+<h1>Eres calma, eres luz, eres vida.</h1>
+<h2>Han pasado <span id="contador"></span> días desde que comenzó nuestra historia 🤍</h2>
 
-    <h2>Han pasado <span id="contador"></span> días desde que comenzó nuestra historia🤍</h2>
-
-    <div class="carousel">
-
-        <!-- 
-        🔁 CAMBIA AQUÍ LOS NOMBRES DE LAS 10 IMÁGENES
-        Solo reemplaza los nombres entre comillas.
-        Ejemplo: "foto1.jpg"
-        -->
-
-        <img src="30.jpeg" class="active">
+<div class="carousel-container">
+    <div class="carousel" id="carousel">
+        <img src="30.jpeg">
         <img src="33.jpeg">
         <img src="35.jpeg">
         <img src="42.jpeg">
@@ -136,41 +140,43 @@ p {
         <img src="50.jpeg">
         <img src="54.jpeg">
         <img src="55.jpeg">
-
     </div>
+</div>
 
-    <p>
-        Desde el 9 de marzo de 2024 mi corazón aprendió una nueva forma de amar.
-    </p>
-
-    <p>
-        Contigo todo se siente más libre, más bonito, más verdadero.
-    </p>
-
-    <p>
-        🌿 Hoy celebro tu esencia, tu fuerza tranquila y la mujer increíble que eres 🤍
-    </p>
+<p>Desde el 9 de marzo de 2024 mi corazón aprendió una nueva forma de amar.</p>
+<p>Contigo todo se siente más libre, más bonito, más verdadero.</p>
+<p>🌿 Hoy celebro tu esencia, tu fuerza tranquila y la mujer increíble que eres 🤍</p>
 
 </div>
 
 <script>
 
-/* 🔢 Contador de días */
+/* Contador */
 const inicio = new Date("March 9, 2024");
 const hoy = new Date();
-const diferencia = hoy - inicio;
-const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+const dias = Math.floor((hoy - inicio) / (1000*60*60*24));
 document.getElementById("contador").innerText = dias;
 
-/* 📸 Carrusel automático centrado */
-const imagenes = document.querySelectorAll(".carousel img");
-let index = 0;
+/* Posicionar imágenes en círculo 3D */
+const carousel = document.getElementById("carousel");
+const images = carousel.querySelectorAll("img");
+const total = images.length;
+const angle = 360 / total;
 
-setInterval(() => {
-    imagenes[index].classList.remove("active");
-    index = (index + 1) % imagenes.length;
-    imagenes[index].classList.add("active");
-}, 4500);
+images.forEach((img, i) => {
+    img.style.transform = `rotateY(${i * angle}deg) translateZ(400px)`;
+});
+
+/* Generar flores flotantes */
+for(let i=0; i<15; i++){
+    const flower = document.createElement("img");
+    flower.src = "https://cdn-icons-png.flaticon.com/512/766/766059.png";
+    flower.className = "flower";
+    flower.style.left = Math.random()*100 + "vw";
+    flower.style.animationDuration = (10 + Math.random()*10) + "s";
+    flower.style.width = (30 + Math.random()*20) + "px";
+    document.body.appendChild(flower);
+}
 
 </script>
 
