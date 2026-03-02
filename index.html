@@ -26,14 +26,14 @@ body {
     z-index: -2;
 }
 
-/* Capa translúcida más suave (más transparente que antes) */
+/* Capa translúcida para mejorar lectura */
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.45); /* antes estaba en 0.65 */
+    background: rgba(255, 255, 255, 0.65);
     z-index: -1;
 }
 
@@ -42,21 +42,21 @@ body {
     padding: 50px 20px;
 }
 
-/* 🌿 Nuevo color verde elegante y más oscuro */
+/* Títulos */
 h1 {
-    color: #2f5d46; 
+    color: #b25c7a; /* rosa romántico profundo */
     font-size: 38px;
     margin-bottom: 10px;
 }
 
 h2 {
-    color: #3e6f58;
-    font-weight: 500;
+    color: #7a5c6d;
+    font-weight: 400;
 }
 
 /* Texto general */
 p {
-    color: #355f4a;
+    color: #5e5560;
     font-size: 18px;
     max-width: 800px;
     margin: 15px auto;
@@ -67,7 +67,7 @@ p {
 .heart {
     color: white;
     font-size: 28px;
-    text-shadow: 0 0 10px rgba(0,0,0,0.25);
+    text-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 /* Carrusel */
@@ -76,6 +76,7 @@ p {
     width: 100%;
     max-width: 700px;
     margin: 40px auto;
+    perspective: 1000px;
 }
 
 .carousel img {
@@ -91,6 +92,14 @@ p {
 
 .carousel img.active {
     opacity: 1;
+}
+
+/* Animación suave */
+@keyframes fade {
+    0% {opacity: 0;}
+    10% {opacity: 1;}
+    90% {opacity: 1;}
+    100% {opacity: 0;}
 }
 
 </style>
