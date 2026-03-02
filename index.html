@@ -15,6 +15,10 @@ body{
     background:linear-gradient(to bottom,#fdfcfb,#e2f7e1);
     overflow-x:hidden;
     position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
 }
 
 body::before{
@@ -23,7 +27,7 @@ body::before{
     width:100%;
     height:100%;
     background:url("https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=1974&auto=format&fit=crop") center/cover no-repeat;
-    opacity:0.30;
+    opacity:0.35;
     filter:blur(2px);
     z-index:0;
 }
@@ -31,21 +35,22 @@ body::before{
 .container{
     position:relative;
     z-index:2;
-    min-height:100vh;
-    padding:60px 20px 100px;
+    width:100%;
+    max-width:1100px;
+    padding:40px 20px 80px;
     text-align:center;
 }
 
 h1{
     font-family:'Great Vibes', cursive;
-    font-size:60px;
+    font-size:64px;
     color:#6a994e;
+    margin-bottom:15px;
 }
 
 .intro{
     font-size:20px;
     color:#5f7d5f;
-    margin-bottom:15px;
 }
 
 .contador{
@@ -54,42 +59,44 @@ h1{
     color:#4f6f52;
 }
 
-/* ===== CARRUSEL 3D REAL ===== */
+/* ===== CARRUSEL 3D CENTRADO PERFECTO ===== */
 
 .carrusel-container{
-    margin-top:60px;
+    margin-top:50px;
     display:flex;
     justify-content:center;
-    perspective:1400px;
+    perspective:1500px;
 }
 
 .carrusel{
-    width:380px;
-    height:380px;
+    width:400px;
+    height:400px;
     position:relative;
     transform-style:preserve-3d;
-    animation:girar 25s infinite linear;
+    animation:girar 28s infinite linear;
 }
 
+/* CENTRADO REAL */
 .carrusel img{
     position:absolute;
-    width:320px;
-    height:320px;
+    width:340px;
+    height:340px;
     object-fit:cover;
     border-radius:25px;
-    left:30px;
-    top:30px;
     box-shadow:0 15px 40px rgba(100,150,100,0.35);
+
+    left:50%;
+    top:50%;
+    transform-style:preserve-3d;
 }
 
-/* Animación de giro completo */
+/* Animación */
 @keyframes girar{
     from{ transform:rotateY(0deg); }
     to{ transform:rotateY(360deg); }
 }
 
-/* Textos */
-.frase, .mensaje-extra{
+.frase{
     margin-top:40px;
     max-width:650px;
     margin-left:auto;
@@ -100,10 +107,13 @@ h1{
 }
 
 .mensaje-extra{
+    margin-top:20px;
     font-weight:600;
+    font-size:18px;
+    color:#3c5a40;
 }
 
-/* Elementos flotando */
+/* Elementos flotantes */
 .flotando{
     position:fixed;
     bottom:-50px;
@@ -192,12 +202,18 @@ const imagenes = [
 const carrusel = document.getElementById("carrusel");
 const cantidad = imagenes.length;
 const angulo = 360 / cantidad;
-const radio = 450;
+const radio = 500;
 
 imagenes.forEach((src, i) => {
     const img = document.createElement("img");
     img.src = src;
-    img.style.transform = `rotateY(${i * angulo}deg) translateZ(${radio}px)`;
+
+    img.style.transform = `
+        translate(-50%, -50%)
+        rotateY(${i * angulo}deg)
+        translateZ(${radio}px)
+    `;
+
     carrusel.appendChild(img);
 });
 
@@ -209,7 +225,7 @@ function actualizarContador(){
     const diferencia = ahora - fechaInicio;
     const dias = Math.floor(diferencia / (1000*60*60*24));
     document.getElementById("contador").innerHTML =
-    "Han pasado " + dias + " días desde que comenzó nuestra historia🤍";
+    "Han pasado " + dias + " días desde que comenzó nuestra historia 🤍";
 }
 actualizarContador();
 setInterval(actualizarContador,1000);
@@ -235,7 +251,6 @@ function crearElemento(){
     elemento.style.fontSize=Math.random()*22+16+"px";
 
     document.body.appendChild(elemento);
-
     setTimeout(()=>{elemento.remove();},14000);
 }
 setInterval(crearElemento,1200);
