@@ -23,7 +23,7 @@ body::before{
     width:100%;
     height:100%;
     background:url("https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=1974&auto=format&fit=crop") center/cover no-repeat;
-    opacity:0.25;
+    opacity:0.30;
     filter:blur(2px);
     z-index:0;
 }
@@ -40,7 +40,6 @@ h1{
     font-family:'Great Vibes', cursive;
     font-size:60px;
     color:#6a994e;
-    margin-bottom:10px;
 }
 
 .intro{
@@ -55,46 +54,44 @@ h1{
     color:#4f6f52;
 }
 
-.imagen-container{
-    margin-top:40px;
-    height:340px;
+/* ===== CARRUSEL 3D REAL ===== */
+
+.carrusel-container{
+    margin-top:60px;
     display:flex;
     justify-content:center;
-    align-items:center;
-    perspective:1000px;
-    position:relative;
+    perspective:1400px;
 }
 
-.rotacion{
+.carrusel{
+    width:380px;
+    height:380px;
     position:relative;
-    width:300px;
-    height:300px;
+    transform-style:preserve-3d;
+    animation:girar 25s infinite linear;
 }
 
-.rotacion img{
+.carrusel img{
     position:absolute;
-    width:100%;
-    height:100%;
+    width:320px;
+    height:320px;
     object-fit:cover;
     border-radius:25px;
+    left:30px;
+    top:30px;
     box-shadow:0 15px 40px rgba(100,150,100,0.35);
-    opacity:0;
-    transition:opacity 2s ease, transform 2s ease;
 }
 
-.rotacion img.activa{
-    opacity:1;
-    transform:rotateY(0deg) scale(1);
+/* Animación de giro completo */
+@keyframes girar{
+    from{ transform:rotateY(0deg); }
+    to{ transform:rotateY(360deg); }
 }
 
-.rotacion img.saliendo{
-    opacity:0;
-    transform:rotateY(90deg) scale(0.95);
-}
-
+/* Textos */
 .frase, .mensaje-extra{
-    margin-top:30px;
-    max-width:600px;
+    margin-top:40px;
+    max-width:650px;
     margin-left:auto;
     margin-right:auto;
     font-size:18px;
@@ -104,9 +101,9 @@ h1{
 
 .mensaje-extra{
     font-weight:600;
-    margin-top:25px;
 }
 
+/* Elementos flotando */
 .flotando{
     position:fixed;
     bottom:-50px;
@@ -150,8 +147,8 @@ h1{
 
 <div class="contador" id="contador"></div>
 
-<div class="imagen-container">
-    <div class="rotacion" id="rotacion"></div>
+<div class="carrusel-container">
+    <div class="carrusel" id="carrusel"></div>
 </div>
 
 <div class="frase">
@@ -160,7 +157,7 @@ Contigo todo se siente más libre, más bonito, más verdadero.
 </div>
 
 <div class="mensaje-extra">
-Hoy celebro tu esencia, tu fuerza tranquila y la mujer increíble que eres🤍
+Hoy celebro tu esencia, tu fuerza tranquila y la mujer increíble que eres 🤍
 </div>
 
 <button id="botonMusica">🌿 Activar música</button>
@@ -174,7 +171,7 @@ Hoy celebro tu esencia, tu fuerza tranquila y la mujer increíble que eres🤍
 <script>
 
 /* =========================================================
-   CAMBIA AQUÍ LOS NOMBRES DE TUS IMÁGENES (FORMATO .jpeg)
+   CAMBIA AQUÍ LOS NOMBRES DE TUS IMÁGENES (.jpeg)
 ========================================================= */
 
 const imagenes = [
@@ -192,34 +189,19 @@ const imagenes = [
 
 /* ========================================================= */
 
-const contenedor = document.getElementById("rotacion");
+const carrusel = document.getElementById("carrusel");
+const cantidad = imagenes.length;
+const angulo = 360 / cantidad;
+const radio = 450;
 
-imagenes.forEach((src, index) => {
+imagenes.forEach((src, i) => {
     const img = document.createElement("img");
     img.src = src;
-    if(index === 0) img.classList.add("activa");
-    contenedor.appendChild(img);
+    img.style.transform = `rotateY(${i * angulo}deg) translateZ(${radio}px)`;
+    carrusel.appendChild(img);
 });
 
-let indexActual = 0;
-const listaImg = document.querySelectorAll(".rotacion img");
-
-setInterval(() => {
-    listaImg[indexActual].classList.remove("activa");
-    listaImg[indexActual].classList.add("saliendo");
-
-    indexActual = (indexActual + 1) % listaImg.length;
-
-    listaImg[indexActual].classList.add("activa");
-
-    setTimeout(() => {
-        listaImg.forEach(img => img.classList.remove("saliendo"));
-    }, 2000);
-
-}, 5000);
-
-
-// CONTADOR
+/* CONTADOR */
 const fechaInicio = new Date(2024, 2, 9);
 
 function actualizarContador(){
@@ -227,20 +209,21 @@ function actualizarContador(){
     const diferencia = ahora - fechaInicio;
     const dias = Math.floor(diferencia / (1000*60*60*24));
     document.getElementById("contador").innerHTML =
-    "Han pasado " + dias + " días desde que comenzó nuestra historia 🤍";
+    "Han pasado " + dias + " días desde que comenzó nuestra historia🤍";
 }
 actualizarContador();
 setInterval(actualizarContador,1000);
 
-// MÚSICA
+/* MÚSICA */
 const musica = document.getElementById("musica");
 musica.volume = 0.3;
+
 document.getElementById("botonMusica").addEventListener("click", function(){
     musica.play();
     this.style.display="none";
 });
 
-// FLORES Y CORAZONES
+/* FLORES Y CORAZONES */
 function crearElemento(){
     const elemento=document.createElement("div");
     elemento.classList.add("flotando");
@@ -255,7 +238,7 @@ function crearElemento(){
 
     setTimeout(()=>{elemento.remove();},14000);
 }
-setInterval(crearElemento,1100);
+setInterval(crearElemento,1200);
 
 </script>
 
