@@ -3,114 +3,118 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para mi niña🤍</title>
+<title>Para mi niña 🤍</title>
 
 <style>
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-    text-align: center;
-    overflow-x: hidden;
-    background: #fdf6f9;
+body{
+    margin:0;
+    padding:0;
+    font-family:'Segoe UI',sans-serif;
+    text-align:center;
+    overflow-x:hidden;
+    background:#fff;
 }
 
-/* Fondo floral */
-.background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("fondo-floral.jpg") center/cover no-repeat;
-    z-index: -3;
+/* 🌷 Fondo floral elegante con blur */
+.background{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:url("https://images.unsplash.com/photo-1526045612212-70caf35c14df") center/cover no-repeat;
+    filter: blur(6px) brightness(0.9);
+    z-index:-3;
 }
 
-/* Capa translúcida */
-.overlay {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(255,255,255,0.7);
-    z-index: -2;
+.overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.8));
+    z-index:-2;
 }
 
-/* Flores flotantes */
-.flower {
-    position: fixed;
-    width: 40px;
-    animation: float 15s linear infinite;
-    opacity: 0.8;
-    z-index: -1;
+/* 🌸 Elementos flotantes */
+.floating{
+    position:fixed;
+    pointer-events:none;
+    animation: float linear infinite;
+    z-index:0;
 }
 
-@keyframes float {
-    from {
-        transform: translateY(100vh) rotate(0deg);
+@keyframes float{
+    from{
+        transform:translateY(100vh) rotate(0deg);
+        opacity:0;
     }
-    to {
-        transform: translateY(-10vh) rotate(360deg);
+    10%{opacity:1;}
+    90%{opacity:1;}
+    to{
+        transform:translateY(-10vh) rotate(360deg);
+        opacity:0;
     }
 }
 
-.container {
-    padding: 50px 20px;
+.container{
+    padding:60px 20px;
+    position:relative;
+    z-index:2;
 }
 
-h1 {
-    color: #b25c7a;
-    font-size: 38px;
+h1{
+    color:#b25c7a;
+    font-size:38px;
 }
 
-h2 {
-    color: #7a5c6d;
-    font-weight: 400;
+h2{
+    color:#7a5c6d;
+    font-weight:400;
 }
 
-p {
-    color: #5e5560;
-    font-size: 18px;
-    max-width: 800px;
-    margin: 15px auto;
-    line-height: 1.6;
+p{
+    color:#5e5560;
+    font-size:17px;
+    max-width:750px;
+    margin:18px auto;
+    line-height:1.7;
 }
 
-.heart {
-    font-size: 28px;
+/* 🌟 CARRUSEL 3D AJUSTADO */
+.carousel-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:60px 0;
+    perspective:1200px;
 }
 
-/* CARRUSEL 3D REAL */
-.carousel-container {
-    perspective: 1200px;
-    width: 300px;
-    height: 300px;
-    margin: 50px auto;
-    position: relative;
+.carousel{
+    position:relative;
+    width:220px;
+    height:280px;
+    transform-style:preserve-3d;
+    animation:rotate 25s infinite linear;
 }
 
-.carousel {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    transform-style: preserve-3d;
-    animation: rotate 20s infinite linear;
+.carousel:hover{
+    animation-play-state:paused;
 }
 
-.carousel img {
-    position: absolute;
-    width: 200px;
-    height: 260px;
-    left: 50%;
-    top: 50%;
-    transform-origin: center center -400px;
-    border-radius: 20px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+.carousel img{
+    position:absolute;
+    width:180px;
+    height:240px;
+    object-fit:cover;
+    border-radius:18px;
+    box-shadow:0 15px 30px rgba(0,0,0,0.2);
+    left:50%;
+    top:50%;
+    transform-origin:center center;
 }
 
-@keyframes rotate {
-    from { transform: rotateY(0deg); }
-    to { transform: rotateY(360deg); }
+@keyframes rotate{
+    from{transform:rotateY(0deg);}
+    to{transform:rotateY(360deg);}
 }
 
 </style>
@@ -123,12 +127,10 @@ p {
 
 <div class="container">
 
-<div class="heart">🤍</div>
-
 <h1>Eres calma, eres luz, eres vida.</h1>
-<h2>Han pasado <span id="contador"></span> días desde que comenzó nuestra historia🤍</h2>
+<h2>Han pasado <span id="contador"></span> días desde que comenzó nuestra historia 🤍</h2>
 
-<div class="carousel-container">
+<div class="carousel-wrapper">
     <div class="carousel" id="carousel">
         <img src="30.jpeg">
         <img src="33.jpeg">
@@ -143,9 +145,14 @@ p {
     </div>
 </div>
 
-<p>Mi amor, hay fechas que simplemente se quedan tatuadas en el alma, para mí el 9 de marzo de 2024 no es solo un día en el calendario… es el momento exacto en que mi corazón empezó a latir diferente. Desde ese día todo tomó más color, más sentido, más verdad. Contigo descubrí una forma de amar que me llena, que me calma y al mismo tiempo me enciende el alma; amar tu risa, tu fuerza tranquila, tu manera tan tuya de iluminarlo todo. Hoy, en el Día de la Mujer, quiero celebrarte con el pecho inflado de orgullo, porque eres valentía, eres ternura, eres luz en medio de cualquier oscuridad. Te amo con una energía que me atraviesa entero, con gratitud por lo que somos desde aquel dia que cambió mi vida para siempre y con la certeza de que elegirte ha sido y seguirá siendo lo más bonito que me ha pasado.</p>
-<p>Contigo todo se siente más libre, más bonito, más verdadero.</p>
-<p>🌿 Hoy celebro tu esencia, tu fuerza tranquila y la mujer increíble que eres 🤍</p>
+<p>
+Mi amor, hay fechas que simplemente se quedan tatuadas en el alma. 
+El 9 de marzo de 2024 no es solo un día en el calendario… 
+es el momento exacto en que mi corazón empezó a latir diferente. 
+Desde entonces todo tiene más color, más sentido y más verdad. 
+Hoy celebro la mujer increíble que eres: fuerte, dulce, valiente y luminosa. 
+Gracias por existir y por haber cambiado mi vida desde aquel día que marcó nuestro comienzo.
+</p>
 
 </div>
 
@@ -154,29 +161,34 @@ p {
 /* Contador */
 const inicio = new Date("March 9, 2024");
 const hoy = new Date();
-const dias = Math.floor((hoy - inicio) / (1000*60*60*24));
+const dias = Math.floor((hoy - inicio)/(1000*60*60*24));
 document.getElementById("contador").innerText = dias;
 
-/* Posicionar imágenes en círculo 3D */
+/* Configurar carrusel 3D */
 const carousel = document.getElementById("carousel");
 const images = carousel.querySelectorAll("img");
 const total = images.length;
-const angle = 360 / total;
+const angle = 360/total;
+const radius = 300;
 
-images.forEach((img, i) => {
-    img.style.transform = `rotateY(${i * angle}deg) translateZ(400px)`;
+images.forEach((img,i)=>{
+    img.style.transform=`rotateY(${i*angle}deg) translateZ(${radius}px) translate(-50%, -50%)`;
 });
 
-/* Generar flores flotantes */
-for(let i=0; i<15; i++){
-    const flower = document.createElement("img");
-    flower.src = "https://cdn-icons-png.flaticon.com/512/766/766059.png";
-    flower.className = "flower";
-    flower.style.left = Math.random()*100 + "vw";
-    flower.style.animationDuration = (10 + Math.random()*10) + "s";
-    flower.style.width = (30 + Math.random()*20) + "px";
-    document.body.appendChild(flower);
-}
+/* 🌸 Corazones y flores flotando */
+const icons = ["🤍","🌷","🌸","🌿","💗"];
+
+setInterval(()=>{
+    const element=document.createElement("div");
+    element.className="floating";
+    element.innerHTML=icons[Math.floor(Math.random()*icons.length)];
+    element.style.left=Math.random()*100+"vw";
+    element.style.fontSize=(20+Math.random()*25)+"px";
+    element.style.animationDuration=(8+Math.random()*8)+"s";
+    document.body.appendChild(element);
+
+    setTimeout(()=>{element.remove();},15000);
+},800);
 
 </script>
 
