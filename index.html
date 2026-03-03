@@ -42,25 +42,40 @@ body::after{
 h1{
     font-family:'Great Vibes', cursive;
     font-size:58px;
-    color:#5b8f55;
+    color:#111111;
     margin-bottom:15px;
 }
 
 .intro{
     font-size:20px;
-    color:#3d6b49;
+    color:#111111;
 }
 
 .contador{
     margin-top:15px;
     font-size:18px;
-    color:#3d6b49;
+    color:#111111;
+}
+
+.frase{
+    max-width:650px;
+    margin:0 auto;
+    font-size:18px;
+    line-height:1.8;
+    color:#111111;
+}
+
+.mensaje-extra{
+    margin-top:25px;
+    font-weight:600;
+    font-size:18px;
+    color:#111111;
 }
 
 /* ===== CARRUSEL PERFECTAMENTE AJUSTADO ===== */
 
 .carrusel-container{
-    margin:100px 0 100px 0; /* ESPACIO REAL */
+    margin:100px 0 100px 0;
     display:flex;
     justify-content:center;
     perspective:1600px;
@@ -74,7 +89,6 @@ h1{
     animation:rotar 40s linear infinite;
 }
 
-/* IMÁGENES MÁS PEQUEÑAS Y PROPORCIONADAS */
 .carrusel img{
     position:absolute;
     width:200px;
@@ -87,25 +101,9 @@ h1{
     transform-origin:center center;
 }
 
-/* ROTACIÓN SUAVE */
 @keyframes rotar{
     from{ transform:rotateY(0deg); }
     to{ transform:rotateY(360deg); }
-}
-
-.frase{
-    max-width:650px;
-    margin:0 auto;
-    font-size:18px;
-    line-height:1.8;
-    color:#2f5d3b;
-}
-
-.mensaje-extra{
-    margin-top:25px;
-    font-weight:600;
-    font-size:18px;
-    color:#2f5d3b;
 }
 
 /* ===== ELEMENTOS FLOTANTES ===== */
@@ -130,7 +128,7 @@ h1{
     border-radius:25px;
     border:none;
     background:#a7d7a7;
-    color:#2d4a2d;
+    color:#111111;
     font-weight:600;
     cursor:pointer;
     transition:0.3s;
@@ -175,10 +173,6 @@ Hoy celebro tu esencia, tu fuerza tranquila y la mujer increíble que eres 🤍
 
 <script>
 
-/* =========================================================
-   CAMBIA AQUÍ LOS NOMBRES DE TUS IMÁGENES (.jpeg)
-========================================================= */
-
 const imagenes = [
 "30.jpeg",
 "33.jpeg",
@@ -192,13 +186,10 @@ const imagenes = [
 "55.jpeg"
 ];
 
-/* ========================================================= */
-
 const carrusel = document.getElementById("carrusel");
 const cantidad = imagenes.length;
 const angulo = 360 / cantidad;
 
-/* CÁLCULO EXACTO DEL RADIO PARA QUE NO SE MONTEN */
 const ancho = 200;
 const radio = (ancho / 2) / Math.tan(Math.PI / cantidad) + 5;
 
@@ -215,7 +206,6 @@ imagenes.forEach((src, i) => {
     carrusel.appendChild(img);
 });
 
-/* CONTADOR */
 const fechaInicio = new Date(2024, 2, 9);
 
 function actualizarContador(){
@@ -228,7 +218,6 @@ function actualizarContador(){
 actualizarContador();
 setInterval(actualizarContador,1000);
 
-/* MÚSICA */
 const musica = document.getElementById("musica");
 musica.volume = 0.3;
 
@@ -237,7 +226,6 @@ document.getElementById("botonMusica").addEventListener("click", function(){
     this.style.display="none";
 });
 
-/* FLORES Y CORAZONES */
 function crearElemento(){
     const elemento=document.createElement("div");
     elemento.classList.add("flotando");
