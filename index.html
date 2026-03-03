@@ -26,14 +26,13 @@ h1, .intro, .contador, .frase, .mensaje-extra, button {
     color:#000000 !important;
 }
 
-/* ===== FONDO MÁS SUAVE ===== */
-
+/* Fondo más suave */
 body::after{
     content:"";
     position:fixed;
     inset:0;
-    background:rgba(255,255,255,0.75); /* MÁS TRANSPARENCIA */
-    backdrop-filter:blur(6px); /* MÁS DIFUMINADO */
+    background:rgba(255,255,255,0.55); /* MÁS TRANSPARENCIA */
+    backdrop-filter:blur(4px);
     z-index:-1;
 }
 
@@ -52,8 +51,14 @@ h1{
     margin-bottom:15px;
 }
 
-.intro{ font-size:20px; }
-.contador{ margin-top:15px; font-size:18px; }
+.intro{
+    font-size:20px;
+}
+
+.contador{
+    margin-top:15px;
+    font-size:18px;
+}
 
 .frase{
     max-width:650px;
@@ -105,7 +110,7 @@ h1{
 
 .titulo-seccion{
     font-family:'Great Vibes', cursive;
-    font-size:44px;
+    font-size:42px;
     margin-bottom:25px;
 }
 
@@ -115,18 +120,18 @@ h1{
     font-size:17px;
 }
 
-/* ===== ILUSTRACIONES GRANDES ===== */
+/* ===== ILUSTRACIONES ===== */
 
 .ilustracion{
-    font-size:45px;
+    font-size:28px;
     position:absolute;
-    animation:flotar 5s ease-in-out infinite;
-    opacity:0.85;
+    animation:flotar 6s ease-in-out infinite;
+    opacity:0.8;
 }
 
 @keyframes flotar{
     0%{transform:translateY(0);}
-    50%{transform:translateY(-15px);}
+    50%{transform:translateY(-10px);}
     100%{transform:translateY(0);}
 }
 
@@ -143,63 +148,6 @@ h1{
     margin-bottom:15px;
     font-size:16px;
     line-height:1.7;
-}
-
-/* ===== CIERRE CIELO ESTRELLADO ===== */
-
-.cierre{
-    margin-top:200px;
-    height:100vh;
-    background:linear-gradient(to top, #0f2027, #203a43, #2c5364);
-    position:relative;
-    overflow:hidden;
-    color:white;
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-}
-
-.cierre h2{
-    font-family:'Great Vibes', cursive;
-    font-size:55px;
-    margin-bottom:20px;
-}
-
-.cierre p{
-    font-size:20px;
-    max-width:600px;
-}
-
-.estrella{
-    position:absolute;
-    width:3px;
-    height:3px;
-    background:white;
-    border-radius:50%;
-    opacity:0.8;
-    animation:parpadeo 2s infinite alternate;
-}
-
-@keyframes parpadeo{
-    from{opacity:0.3;}
-    to{opacity:1;}
-}
-
-.constelacion{
-    position:absolute;
-    width:200px;
-    height:180px;
-    display:none;
-}
-
-.constelacion span{
-    position:absolute;
-    width:6px;
-    height:6px;
-    background:white;
-    border-radius:50%;
 }
 
 /* ===== CARRUSEL ===== */
@@ -236,6 +184,37 @@ h1{
     to{ transform:rotateY(360deg); }
 }
 
+/* ===== ELEMENTOS FLOTANTES ===== */
+
+.flotando{
+    position:fixed;
+    bottom:-50px;
+    font-size:18px;
+    animation:subir 15s linear infinite;
+    opacity:0.85;
+    pointer-events:none;
+}
+
+@keyframes subir{
+    from{transform:translateY(0);}
+    to{transform:translateY(-120vh);}
+}
+
+#botonMusica{
+    margin-top:40px;
+    padding:12px 30px;
+    border-radius:25px;
+    border:none;
+    background:#a7d7a7;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+#botonMusica:hover{
+    background:#8ecf8e;
+}
+
 </style>
 </head>
 
@@ -244,6 +223,7 @@ h1{
 <div class="container">
 
 <h1>Feliz Día de la Mujer, Mi Niña 🤍</h1>
+
 <div class="intro">Eres calma, eres luz, eres vida.</div>
 <div class="contador" id="contador"></div>
 
@@ -257,34 +237,82 @@ Contigo todo se siente más libre, más bonito, más verdadero.
 </div>
 
 <div class="mensaje-extra">
-Hoy te celebro… y también te elijo 🤍
+Hoy celebro tu esencia, tu fuerza tranquila y la mujer increíble que eres 🤍
 </div>
 
 <button id="botonMusica">🌿 Activar música</button>
 
+<button class="boton-amor" onclick="mostrarSeccion('carta')">💌 Algo que nunca te he dicho</button>
+<button class="boton-amor" onclick="mostrarSeccion('distancia')">🌎 Sobre nuestra distancia</button>
+<button class="boton-amor" onclick="mostrarSeccion('promesas')">✨ Promesas futuras</button>
+<button class="boton-amor" onclick="mostrarSeccion('sabias')">💬 ¿Sabías esto?</button>
+<button class="boton-amor" onclick="mostrarSeccion('dudas')">🤍 Si alguna vez dudas...</button>
+
+<!-- SECCIONES -->
+
+<div id="carta" class="seccion">
+<div class="ilustracion" style="top:-20px; right:-20px;">💌</div>
+<div class="titulo-seccion">Algo que nunca te he dicho</div>
+<p>
+Amar contigo ha sido aprender que el amor no solo es emoción,
+es decisión.  
+Eres hogar incluso en la distancia.
+Y quiero construir contigo algo real, estable y sincero.
+</p>
 </div>
 
-<!-- ===== CIERRE ===== -->
-
-<div class="cierre" onclick="mostrarConstelacion()">
-
-<h2>Nuestro futuro empieza aquí</h2>
-<p>Y si algún día el mundo se siente grande…  
-recuerda que siempre tendremos nuestro propio cielo.</p>
-<p style="margin-top:20px;">✨ Haz clic en el cielo ✨</p>
-
-<div class="constelacion" id="corazon">
-<span style="top:60px; left:20px;"></span>
-<span style="top:30px; left:50px;"></span>
-<span style="top:30px; left:100px;"></span>
-<span style="top:60px; left:130px;"></span>
-<span style="top:100px; left:75px;"></span>
+<div id="distancia" class="seccion">
+<div class="ilustracion" style="top:-20px; left:-20px;">🌎</div>
+<div class="titulo-seccion">Aunque hoy la distancia nos separe...</div>
+<div class="lista-romantica">
+💞 Nunca dejo de pensarte.<br>
+📱 Mi parte favorita del día sigue siendo tu llamada.<br>
+🌙 Imagino el momento de volver a abrazarte.<br>
+🤍 La distancia me hace valorarte más.
+</div>
 </div>
 
-<div id="fraseFinal" style="display:none; margin-top:40px; font-size:22px;">
-No prometo que todo será perfecto.  
-Pero sí prometo que todo lo que venga…  
-quiero vivirlo contigo. 🤍
+<div id="promesas" class="seccion">
+<div class="ilustracion" style="top:-20px; right:-20px;">✨</div>
+<div class="titulo-seccion">Promesas que quiero hacerte</div>
+<div class="lista-romantica">
+Prometo cuidarte incluso cuando no estés físicamente cerca.<br>
+Prometo escucharte antes de reaccionar.<br>
+Prometo trabajar en mí para ser una mejor pareja para ti.<br>
+Prometo no rendirme en los momentos difíciles.<br>
+Prometo construir estabilidad, no solo intensidad.<br>
+Prometo celebrar tus logros como si fueran míos.<br>
+Prometo que nuestro amor sea un lugar seguro, no una batalla.<br>
+Prometo elegirte, incluso cuando tengamos que aprender.
+</div>
+</div>
+
+<div id="sabias" class="seccion">
+<div class="ilustracion" style="top:-20px; left:-20px;">💬</div>
+<div class="titulo-seccion">¿Sabías esto?</div>
+
+<div class="pregunta" onclick="toggleRespuesta(this)">¿Sabías que eres mi lugar seguro?</div>
+<div class="respuesta">Cuando hablo contigo mi mente se calma.</div>
+
+<div class="pregunta" onclick="toggleRespuesta(this)">¿Sabías que te elijo incluso en la distancia?</div>
+<div class="respuesta">Porque lo que siento no depende de la cercanía física.</div>
+</div>
+
+<div id="dudas" class="seccion">
+<div class="ilustracion" style="top:-20px; right:-20px;">🤍</div>
+<div class="titulo-seccion">Si alguna vez dudas de lo que siento...</div>
+<div class="lista-romantica">
+Porque contigo puedo ser yo.<br>
+Porque me das paz.<br>
+Porque admiro tu madurez.<br>
+Porque quiero un futuro contigo.<br><br>
+<b>
+Sé que no siempre ha sido fácil.  
+Pero incluso en los momentos difíciles, nunca he dejado de elegirte.  
+Amar no es no tener problemas, es decidir quedarse para solucionarlos.  
+Y yo te sigo eligiendo.
+</b>
+</div>
 </div>
 
 </div>
@@ -295,54 +323,63 @@ quiero vivirlo contigo. 🤍
 
 <script>
 
-/* Estrellas */
-for(let i=0;i<100;i++){
-    const estrella=document.createElement("div");
-    estrella.classList.add("estrella");
-    estrella.style.top=Math.random()*100+"%";
-    estrella.style.left=Math.random()*100+"%";
-    document.querySelector(".cierre").appendChild(estrella);
+function mostrarSeccion(id){
+    document.querySelectorAll('.seccion').forEach(sec=>sec.style.display="none");
+    document.getElementById(id).style.display="block";
+    document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
 
-function mostrarConstelacion(){
-    document.getElementById("corazon").style.display="block";
-    document.getElementById("fraseFinal").style.display="block";
+function toggleRespuesta(elemento){
+    const respuesta = elemento.nextElementSibling;
+    respuesta.style.display = respuesta.style.display === "block" ? "none" : "block";
 }
 
-/* Carrusel original */
-const imagenes=["30.jpeg","33.jpeg","35.jpeg","42.jpeg","44.jpeg","45.jpeg","49.jpeg","50.jpeg","54.jpeg","55.jpeg"];
-const carrusel=document.getElementById("carrusel");
-const cantidad=imagenes.length;
-const angulo=360/cantidad;
-const ancho=200;
-const radio=(ancho/2)/Math.tan(Math.PI/cantidad)+5;
+/* RESTO DEL SCRIPT ORIGINAL SIN CAMBIOS */
 
-imagenes.forEach((src,i)=>{
-const img=document.createElement("img");
-img.src=src;
-img.style.transform=`translate(-50%, -50%) rotateY(${i*angulo}deg) translateZ(${radio}px)`;
-carrusel.appendChild(img);
+const imagenes = ["30.jpeg","33.jpeg","35.jpeg","42.jpeg","44.jpeg","45.jpeg","49.jpeg","50.jpeg","54.jpeg","55.jpeg"];
+const carrusel = document.getElementById("carrusel");
+const cantidad = imagenes.length;
+const angulo = 360 / cantidad;
+const ancho = 200;
+const radio = (ancho / 2) / Math.tan(Math.PI / cantidad) + 5;
+
+imagenes.forEach((src, i) => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.style.transform = `translate(-50%, -50%) rotateY(${i * angulo}deg) translateZ(${radio}px)`;
+    carrusel.appendChild(img);
 });
 
-const fechaInicio=new Date(2024,2,9);
+const fechaInicio = new Date(2024, 2, 9);
 
 function actualizarContador(){
-const ahora=new Date();
-const diferencia=ahora-fechaInicio;
-const dias=Math.floor(diferencia/(1000*60*60*24));
-document.getElementById("contador").innerHTML=
-"Han pasado "+dias+" días desde que comenzó nuestra historia 🤍";
+    const ahora = new Date();
+    const diferencia = ahora - fechaInicio;
+    const dias = Math.floor(diferencia / (1000*60*60*24));
+    document.getElementById("contador").innerHTML =
+    "Han pasado " + dias + " días desde que comenzó nuestra historia 🤍";
 }
 actualizarContador();
 setInterval(actualizarContador,1000);
 
-const musica=document.getElementById("musica");
-musica.volume=0.3;
+const musica = document.getElementById("musica");
+musica.volume = 0.3;
 
-document.getElementById("botonMusica").addEventListener("click",function(){
-musica.play();
-this.style.display="none";
+document.getElementById("botonMusica").addEventListener("click", function(){
+    musica.play();
+    this.style.display="none";
 });
+
+function crearElemento(){
+    const elemento=document.createElement("div");
+    elemento.classList.add("flotando");
+    const simbolos=["🌸","🌿","🤍","🍃"];
+    elemento.innerHTML=simbolos[Math.floor(Math.random()*simbolos.length)];
+    elemento.style.left=Math.random()*100+"vw";
+    document.body.appendChild(elemento);
+    setTimeout(()=>{elemento.remove();},15000);
+}
+setInterval(crearElemento,1300);
 
 </script>
 
