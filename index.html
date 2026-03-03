@@ -3,385 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Mi Niña 🤍</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<title>Para mi niña🤍</title>
 
 <style>
 
-/* ===== CONFIGURACIÓN GLOBAL ===== */
-
-html, body{
-    margin:0;
-    padding:0;
-    height:100%;
-    font-family:'Quicksand', sans-serif;
-    background:url("https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=1974&auto=format&fit=crop") center/cover no-repeat fixed;
-    background-size:cover;
-    overflow-x:hidden;
-    color:#000000;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    overflow-x: hidden;
+    background: url('flores.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
 
-h1, .intro, .contador, .frase, .mensaje-extra, button {
-    color:#000000 !important;
-}
-
-/* Fondo más suave */
+/* MÁS TRANSPARENCIA AL FONDO */
 body::after{
     content:"";
     position:fixed;
     inset:0;
-    background:rgba(255,255,255,0.55); /* MÁS TRANSPARENCIA */
-    backdrop-filter:blur(4px);
+    background:rgba(255,255,255,0.75);
+    backdrop-filter:blur(6px);
     z-index:-1;
 }
 
-.container{
-    max-width:1000px;
-    margin:0 auto;
-    padding:80px 20px 120px 20px;
-    text-align:center;
+h1 {
+    margin-top: 40px;
+    font-size: 2.5em;
+    color: #b76e79;
 }
 
-/* ===== TEXTOS ===== */
-
-h1{
-    font-family:'Great Vibes', cursive;
-    font-size:58px;
-    margin-bottom:15px;
+.seccion {
+    margin: 40px auto;
+    width: 80%;
+    max-width: 700px;
 }
 
-.intro{
-    font-size:20px;
+details {
+    background: rgba(255,255,255,0.85);
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: all 0.4s ease;
 }
 
-.contador{
-    margin-top:15px;
-    font-size:18px;
+details[open] {
+    transform: scale(1.02);
 }
 
-.frase{
-    max-width:650px;
-    margin:0 auto;
-    font-size:18px;
-    line-height:1.8;
+summary {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #b76e79;
+    list-style: none;
 }
 
-.mensaje-extra{
-    margin-top:25px;
-    font-weight:600;
-    font-size:18px;
+summary::marker {
+    display: none;
 }
 
-/* ===== BOTONES ===== */
-
-.boton-amor{
-    margin-top:30px;
-    padding:12px 28px;
-    border-radius:25px;
-    border:none;
-    background:#a7d7a7;
-    font-weight:600;
-    cursor:pointer;
-    transition:0.3s;
+/* ICONOS MÁS GRANDES */
+.icono {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+    display: block;
 }
 
-.boton-amor:hover{
-    background:#8ecf8e;
-    transform:scale(1.05);
+.contenido {
+    margin-top: 15px;
+    font-size: 1.05em;
+    color: #444;
+    line-height: 1.6em;
 }
 
-/* ===== SECCIONES ===== */
-
-.seccion{
-    margin-top:120px;
-    max-width:750px;
-    margin-left:auto;
-    margin-right:auto;
-    display:none;
-    animation:fadeIn 1.2s ease;
-    position:relative;
+ul {
+    text-align: left;
+    padding-left: 20px;
 }
 
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
-.titulo-seccion{
-    font-family:'Great Vibes', cursive;
-    font-size:42px;
-    margin-bottom:25px;
-}
-
-.lista-romantica{
-    text-align:left;
-    line-height:2;
-    font-size:17px;
-}
-
-/* ===== ILUSTRACIONES ===== */
-
-.ilustracion{
-    font-size:28px;
-    position:absolute;
-    animation:flotar 6s ease-in-out infinite;
-    opacity:0.8;
-}
-
-@keyframes flotar{
-    0%{transform:translateY(0);}
-    50%{transform:translateY(-10px);}
-    100%{transform:translateY(0);}
-}
-
-/* ===== PREGUNTAS ===== */
-
-.pregunta{
-    margin:15px 0;
-    cursor:pointer;
-    font-weight:600;
-}
-
-.respuesta{
-    display:none;
-    margin-bottom:15px;
-    font-size:16px;
-    line-height:1.7;
-}
-
-/* ===== CARRUSEL ===== */
-
-.carrusel-container{
-    margin:100px 0;
-    display:flex;
-    justify-content:center;
-    perspective:1600px;
-}
-
-.carrusel{
-    position:relative;
-    width:260px;
-    height:330px;
-    transform-style:preserve-3d;
-    animation:rotar 40s linear infinite;
-}
-
-.carrusel img{
-    position:absolute;
-    width:200px;
-    height:280px;
-    object-fit:cover;
-    border-radius:18px;
-    box-shadow:0 12px 30px rgba(0,0,0,0.25);
-    left:50%;
-    top:50%;
-    transform-origin:center center;
-}
-
-@keyframes rotar{
-    from{ transform:rotateY(0deg); }
-    to{ transform:rotateY(360deg); }
-}
-
-/* ===== ELEMENTOS FLOTANTES ===== */
-
-.flotando{
-    position:fixed;
-    bottom:-50px;
-    font-size:18px;
-    animation:subir 15s linear infinite;
-    opacity:0.85;
-    pointer-events:none;
-}
-
-@keyframes subir{
-    from{transform:translateY(0);}
-    to{transform:translateY(-120vh);}
-}
-
-#botonMusica{
-    margin-top:40px;
-    padding:12px 30px;
-    border-radius:25px;
-    border:none;
-    background:#a7d7a7;
-    font-weight:600;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-#botonMusica:hover{
-    background:#8ecf8e;
+li {
+    margin-bottom: 8px;
 }
 
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<h1>Feliz Día de la Mujer 🤍</h1>
 
-<h1>Feliz Día de la Mujer, Mi Niña 🤍</h1>
+<div class="seccion">
 
-<div class="intro">Eres calma, eres luz, eres vida.</div>
-<div class="contador" id="contador"></div>
+<!-- 1. CINCO COSAS QUE AMO DE TI -->
+<details>
+    <summary>5 cosas que amo de ti</summary>
+    <div class="contenido">
+        <span class="icono">💖</span>
+        <ul>
+            <li>Amo tu forma tan única de ver el mundo.</li>
+            <li>Amo tu ternura incluso cuando intentas hacerte la fuerte.</li>
+            <li>Amo tu sonrisa, porque cambia completamente mi día.</li>
+            <li>Amo tu inteligencia y la pasión con la que hablas de lo que te gusta.</li>
+            <li>Amo que seas tú, auténtica, real y maravillosa.</li>
+        </ul>
+    </div>
+</details>
 
-<div class="carrusel-container">
-    <div class="carrusel" id="carrusel"></div>
-</div>
+<!-- 2. COSAS QUE ADMIRO DE TI -->
+<details>
+    <summary>Lo que más admiro de ti</summary>
+    <div class="contenido">
+        <span class="icono">🌷</span>
+        <p>
+        Admiro tu fuerza, incluso cuando no te das cuenta de lo fuerte que eres.  
+        Admiro tu sensibilidad, tu forma de sentir tan profundo.  
+        Admiro tu capacidad de seguir adelante aunque las cosas no sean fáciles.  
+        Y admiro que, a pesar de todo, sigas teniendo un corazón tan bonito.
+        </p>
+    </div>
+</details>
 
-<div class="frase">
-Desde el 9 de marzo de 2024 mi corazón aprendió una nueva forma de amar.
-Contigo todo se siente más libre, más bonito, más verdadero.
-</div>
+<!-- 3. PROMESAS FUTURAS -->
+<details>
+    <summary>Promesas futuras 🤍</summary>
+    <div class="contenido">
+        <span class="icono">✨</span>
+        <ul>
+            <li>Prometo apoyarte en cada meta que quieras alcanzar.</li>
+            <li>Prometo escucharte incluso cuando no estemos de acuerdo.</li>
+            <li>Prometo trabajar en mí para poder darte una versión cada vez mejor de mí.</li>
+            <li>Prometo celebrar tus logros como si fueran míos.</li>
+            <li>Prometo cuidar lo que estamos construyendo, incluso en la distancia.</li>
+            <li>Prometo elegirte cada día, incluso cuando sea difícil.</li>
+        </ul>
+    </div>
+</details>
 
-<div class="mensaje-extra">
-Hoy celebro tu esencia, tu fuerza tranquila y la mujer increíble que eres 🤍
-</div>
-
-<button id="botonMusica">🌿 Activar música</button>
-
-<button class="boton-amor" onclick="mostrarSeccion('carta')">💌 Algo que nunca te he dicho</button>
-<button class="boton-amor" onclick="mostrarSeccion('distancia')">🌎 Sobre nuestra distancia</button>
-<button class="boton-amor" onclick="mostrarSeccion('promesas')">✨ Promesas futuras</button>
-<button class="boton-amor" onclick="mostrarSeccion('sabias')">💬 ¿Sabías esto?</button>
-<button class="boton-amor" onclick="mostrarSeccion('dudas')">🤍 Si alguna vez dudas...</button>
-
-<!-- SECCIONES -->
-
-<div id="carta" class="seccion">
-<div class="ilustracion" style="top:-20px; right:-20px;">💌</div>
-<div class="titulo-seccion">Algo que nunca te he dicho</div>
-<p>
-Amar contigo ha sido aprender que el amor no solo es emoción,
-es decisión.  
-Eres hogar incluso en la distancia.
-Y quiero construir contigo algo real, estable y sincero.
-</p>
-</div>
-
-<div id="distancia" class="seccion">
-<div class="ilustracion" style="top:-20px; left:-20px;">🌎</div>
-<div class="titulo-seccion">Aunque hoy la distancia nos separe...</div>
-<div class="lista-romantica">
-💞 Nunca dejo de pensarte.<br>
-📱 Mi parte favorita del día sigue siendo tu llamada.<br>
-🌙 Imagino el momento de volver a abrazarte.<br>
-🤍 La distancia me hace valorarte más.
-</div>
-</div>
-
-<div id="promesas" class="seccion">
-<div class="ilustracion" style="top:-20px; right:-20px;">✨</div>
-<div class="titulo-seccion">Promesas que quiero hacerte</div>
-<div class="lista-romantica">
-Prometo cuidarte incluso cuando no estés físicamente cerca.<br>
-Prometo escucharte antes de reaccionar.<br>
-Prometo trabajar en mí para ser una mejor pareja para ti.<br>
-Prometo no rendirme en los momentos difíciles.<br>
-Prometo construir estabilidad, no solo intensidad.<br>
-Prometo celebrar tus logros como si fueran míos.<br>
-Prometo que nuestro amor sea un lugar seguro, no una batalla.<br>
-Prometo elegirte, incluso cuando tengamos que aprender.
-</div>
-</div>
-
-<div id="sabias" class="seccion">
-<div class="ilustracion" style="top:-20px; left:-20px;">💬</div>
-<div class="titulo-seccion">¿Sabías esto?</div>
-
-<div class="pregunta" onclick="toggleRespuesta(this)">¿Sabías que eres mi lugar seguro?</div>
-<div class="respuesta">Cuando hablo contigo mi mente se calma.</div>
-
-<div class="pregunta" onclick="toggleRespuesta(this)">¿Sabías que te elijo incluso en la distancia?</div>
-<div class="respuesta">Porque lo que siento no depende de la cercanía física.</div>
-</div>
-
-<div id="dudas" class="seccion">
-<div class="ilustracion" style="top:-20px; right:-20px;">🤍</div>
-<div class="titulo-seccion">Si alguna vez dudas de lo que siento...</div>
-<div class="lista-romantica">
-Porque contigo puedo ser yo.<br>
-Porque me das paz.<br>
-Porque admiro tu madurez.<br>
-Porque quiero un futuro contigo.<br><br>
-<b>
-Sé que no siempre ha sido fácil.  
-Pero incluso en los momentos difíciles, nunca he dejado de elegirte.  
-Amar no es no tener problemas, es decidir quedarse para solucionarlos.  
-Y yo te sigo eligiendo.
-</b>
-</div>
-</div>
+<!-- 4. SIEMPRE ESTOY CONTIGO -->
+<details>
+    <summary>Aunque estemos lejos...</summary>
+    <div class="contenido">
+        <span class="icono">🌙</span>
+        <p>
+        Aunque haya kilómetros entre nosotros, no hay un solo día en que no piense en ti.  
+        No hay una meta que imagine sin soñarte cerca.  
+        Y no hay distancia que me haga sentir que no estás conmigo.
+        </p>
+    </div>
+</details>
 
 </div>
-
-<audio id="musica" loop>
-<source src="no hay problema.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-
-function mostrarSeccion(id){
-    document.querySelectorAll('.seccion').forEach(sec=>sec.style.display="none");
-    document.getElementById(id).style.display="block";
-    document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
-
-function toggleRespuesta(elemento){
-    const respuesta = elemento.nextElementSibling;
-    respuesta.style.display = respuesta.style.display === "block" ? "none" : "block";
-}
-
-/* RESTO DEL SCRIPT ORIGINAL SIN CAMBIOS */
-
-const imagenes = ["30.jpeg","33.jpeg","35.jpeg","42.jpeg","44.jpeg","45.jpeg","49.jpeg","50.jpeg","54.jpeg","55.jpeg"];
-const carrusel = document.getElementById("carrusel");
-const cantidad = imagenes.length;
-const angulo = 360 / cantidad;
-const ancho = 200;
-const radio = (ancho / 2) / Math.tan(Math.PI / cantidad) + 5;
-
-imagenes.forEach((src, i) => {
-    const img = document.createElement("img");
-    img.src = src;
-    img.style.transform = `translate(-50%, -50%) rotateY(${i * angulo}deg) translateZ(${radio}px)`;
-    carrusel.appendChild(img);
-});
-
-const fechaInicio = new Date(2024, 2, 9);
-
-function actualizarContador(){
-    const ahora = new Date();
-    const diferencia = ahora - fechaInicio;
-    const dias = Math.floor(diferencia / (1000*60*60*24));
-    document.getElementById("contador").innerHTML =
-    "Han pasado " + dias + " días desde que comenzó nuestra historia 🤍";
-}
-actualizarContador();
-setInterval(actualizarContador,1000);
-
-const musica = document.getElementById("musica");
-musica.volume = 0.3;
-
-document.getElementById("botonMusica").addEventListener("click", function(){
-    musica.play();
-    this.style.display="none";
-});
-
-function crearElemento(){
-    const elemento=document.createElement("div");
-    elemento.classList.add("flotando");
-    const simbolos=["🌸","🌿","🤍","🍃"];
-    elemento.innerHTML=simbolos[Math.floor(Math.random()*simbolos.length)];
-    elemento.style.left=Math.random()*100+"vw";
-    document.body.appendChild(elemento);
-    setTimeout(()=>{elemento.remove();},15000);
-}
-setInterval(crearElemento,1300);
-
-</script>
 
 </body>
 </html>
