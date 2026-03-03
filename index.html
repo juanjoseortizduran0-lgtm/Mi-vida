@@ -26,12 +26,13 @@ h1, .intro, .contador, .frase, .mensaje-extra, button {
     color:#000000 !important;
 }
 
+/* Fondo más suave */
 body::after{
     content:"";
     position:fixed;
     inset:0;
-    background:rgba(255,255,255,0.35);
-    backdrop-filter:blur(3px);
+    background:rgba(255,255,255,0.55); /* MÁS TRANSPARENCIA */
+    backdrop-filter:blur(4px);
     z-index:-1;
 }
 
@@ -72,11 +73,11 @@ h1{
     font-size:18px;
 }
 
-/* ===== BOTONES GENERALES ===== */
+/* ===== BOTONES ===== */
 
 .boton-amor{
-    margin-top:40px;
-    padding:12px 30px;
+    margin-top:30px;
+    padding:12px 28px;
     border-radius:25px;
     border:none;
     background:#a7d7a7;
@@ -90,7 +91,7 @@ h1{
     transform:scale(1.05);
 }
 
-/* ===== SECCIONES NUEVAS ===== */
+/* ===== SECCIONES ===== */
 
 .seccion{
     margin-top:120px;
@@ -98,7 +99,8 @@ h1{
     margin-left:auto;
     margin-right:auto;
     display:none;
-    animation:fadeIn 1.5s ease;
+    animation:fadeIn 1.2s ease;
+    position:relative;
 }
 
 @keyframes fadeIn{
@@ -108,17 +110,32 @@ h1{
 
 .titulo-seccion{
     font-family:'Great Vibes', cursive;
-    font-size:40px;
-    margin-bottom:20px;
+    font-size:42px;
+    margin-bottom:25px;
 }
 
 .lista-romantica{
     text-align:left;
-    line-height:1.9;
+    line-height:2;
     font-size:17px;
 }
 
-/* ===== PREGUNTAS DESPLEGABLES ===== */
+/* ===== ILUSTRACIONES ===== */
+
+.ilustracion{
+    font-size:28px;
+    position:absolute;
+    animation:flotar 6s ease-in-out infinite;
+    opacity:0.8;
+}
+
+@keyframes flotar{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+    100%{transform:translateY(0);}
+}
+
+/* ===== PREGUNTAS ===== */
 
 .pregunta{
     margin:15px 0;
@@ -136,7 +153,7 @@ h1{
 /* ===== CARRUSEL ===== */
 
 .carrusel-container{
-    margin:100px 0 100px 0;
+    margin:100px 0;
     display:flex;
     justify-content:center;
     perspective:1600px;
@@ -203,12 +220,11 @@ h1{
 
 <body>
 
-<div class="container" id="inicio">
+<div class="container">
 
 <h1>Feliz Día de la Mujer, Mi Niña 🤍</h1>
 
 <div class="intro">Eres calma, eres luz, eres vida.</div>
-
 <div class="contador" id="contador"></div>
 
 <div class="carrusel-container">
@@ -226,51 +242,53 @@ Hoy celebro tu esencia, tu fuerza tranquila y la mujer increíble que eres 🤍
 
 <button id="botonMusica">🌿 Activar música</button>
 
-<!-- BOTONES NUEVOS -->
-
 <button class="boton-amor" onclick="mostrarSeccion('carta')">💌 Algo que nunca te he dicho</button>
 <button class="boton-amor" onclick="mostrarSeccion('distancia')">🌎 Sobre nuestra distancia</button>
-<button class="boton-amor" onclick="mostrarSeccion('promesas')">🎟 Promesas futuras</button>
+<button class="boton-amor" onclick="mostrarSeccion('promesas')">✨ Promesas futuras</button>
 <button class="boton-amor" onclick="mostrarSeccion('sabias')">💬 ¿Sabías esto?</button>
 <button class="boton-amor" onclick="mostrarSeccion('dudas')">🤍 Si alguna vez dudas...</button>
 
 <!-- SECCIONES -->
 
 <div id="carta" class="seccion">
+<div class="ilustracion" style="top:-20px; right:-20px;">💌</div>
 <div class="titulo-seccion">Algo que nunca te he dicho</div>
 <p>
-Antes de ti yo creía que amar era solo sentir bonito.
-Contigo entendí que amar también es paciencia, crecimiento y elección.
+Amar contigo ha sido aprender que el amor no solo es emoción,
+es decisión.  
 Eres hogar incluso en la distancia.
-Y si alguna vez dudas... tú no eres solo la persona que amo,
-eres la persona con la que quiero construir.
+Y quiero construir contigo algo real, estable y sincero.
 </p>
-<button class="boton-amor" onclick="volverInicio()">Volver al inicio</button>
 </div>
 
 <div id="distancia" class="seccion">
+<div class="ilustracion" style="top:-20px; left:-20px;">🌎</div>
 <div class="titulo-seccion">Aunque hoy la distancia nos separe...</div>
 <div class="lista-romantica">
 💞 Nunca dejo de pensarte.<br>
 📱 Mi parte favorita del día sigue siendo tu llamada.<br>
 🌙 Imagino el momento de volver a abrazarte.<br>
-🤍 La distancia no me hace dudar, me hace valorar más.
+🤍 La distancia me hace valorarte más.
 </div>
-<button class="boton-amor" onclick="volverInicio()">Volver al inicio</button>
 </div>
 
 <div id="promesas" class="seccion">
-<div class="titulo-seccion">Promesas que pienso cumplir</div>
+<div class="ilustracion" style="top:-20px; right:-20px;">✨</div>
+<div class="titulo-seccion">Promesas que quiero hacerte</div>
 <div class="lista-romantica">
-🎟 Vale por un abrazo infinito.<br>
-🎟 Vale por una cita sorpresa.<br>
-🎟 Vale por una noche hablando hasta dormirnos.<br>
-🎟 Vale por seguir eligiéndote incluso en días difíciles.
+Prometo cuidarte incluso cuando no estés físicamente cerca.<br>
+Prometo escucharte antes de reaccionar.<br>
+Prometo trabajar en mí para ser una mejor pareja para ti.<br>
+Prometo no rendirme en los momentos difíciles.<br>
+Prometo construir estabilidad, no solo intensidad.<br>
+Prometo celebrar tus logros como si fueran míos.<br>
+Prometo que nuestro amor sea un lugar seguro, no una batalla.<br>
+Prometo elegirte, incluso cuando tengamos que aprender.
 </div>
-<button class="boton-amor" onclick="volverInicio()">Volver al inicio</button>
 </div>
 
 <div id="sabias" class="seccion">
+<div class="ilustracion" style="top:-20px; left:-20px;">💬</div>
 <div class="titulo-seccion">¿Sabías esto?</div>
 
 <div class="pregunta" onclick="toggleRespuesta(this)">¿Sabías que eres mi lugar seguro?</div>
@@ -278,19 +296,16 @@ eres la persona con la que quiero construir.
 
 <div class="pregunta" onclick="toggleRespuesta(this)">¿Sabías que te elijo incluso en la distancia?</div>
 <div class="respuesta">Porque lo que siento no depende de la cercanía física.</div>
-
-<button class="boton-amor" onclick="volverInicio()">Volver al inicio</button>
 </div>
 
 <div id="dudas" class="seccion">
+<div class="ilustracion" style="top:-20px; right:-20px;">🤍</div>
 <div class="titulo-seccion">Si alguna vez dudas de lo que siento...</div>
 <div class="lista-romantica">
 Porque contigo puedo ser yo.<br>
 Porque me das paz.<br>
-Porque no huyes cuando algo se pone difícil.<br>
-Porque admiro tu madurez y tu calma.<br>
-Porque quiero construir un amor estable contigo.
-<br><br>
+Porque admiro tu madurez.<br>
+Porque quiero un futuro contigo.<br><br>
 <b>
 Sé que no siempre ha sido fácil.  
 Pero incluso en los momentos difíciles, nunca he dejado de elegirte.  
@@ -298,7 +313,6 @@ Amar no es no tener problemas, es decidir quedarse para solucionarlos.
 Y yo te sigo eligiendo.
 </b>
 </div>
-<button class="boton-amor" onclick="volverInicio()">Volver al inicio</button>
 </div>
 
 </div>
@@ -309,17 +323,10 @@ Y yo te sigo eligiendo.
 
 <script>
 
-/* Mostrar secciones */
-
 function mostrarSeccion(id){
     document.querySelectorAll('.seccion').forEach(sec=>sec.style.display="none");
     document.getElementById(id).style.display="block";
     document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
-
-function volverInicio(){
-    document.querySelectorAll('.seccion').forEach(sec=>sec.style.display="none");
-    document.getElementById("inicio").scrollIntoView({behavior:"smooth"});
 }
 
 function toggleRespuesta(elemento){
@@ -327,7 +334,7 @@ function toggleRespuesta(elemento){
     respuesta.style.display = respuesta.style.display === "block" ? "none" : "block";
 }
 
-/* Carrusel original */
+/* RESTO DEL SCRIPT ORIGINAL SIN CAMBIOS */
 
 const imagenes = ["30.jpeg","33.jpeg","35.jpeg","42.jpeg","44.jpeg","45.jpeg","49.jpeg","50.jpeg","54.jpeg","55.jpeg"];
 const carrusel = document.getElementById("carrusel");
