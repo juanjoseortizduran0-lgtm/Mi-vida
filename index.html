@@ -3,192 +3,254 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para mi niña 🤍</title>
+<title>Para Mi Niña 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
+/* ===== FONDO COMPLETO SIN FRANJAS ===== */
 
-body{
+html, body{
     margin:0;
     padding:0;
-    font-family:'Segoe UI',sans-serif;
-    text-align:center;
+    height:100%;
+    font-family:'Quicksand', sans-serif;
+    background:url("https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=1974&auto=format&fit=crop") center/cover no-repeat fixed;
+    background-size:cover;
     overflow-x:hidden;
-    background:#fff;
 }
 
-/* 🌷 Fondo floral elegante con blur */
-.background{
+/* Capa suavizado floral */
+body::after{
+    content:"";
     position:fixed;
-    width:100%;
-    height:100%;
-    background:url("https://images.unsplash.com/photo-1526045612212-70caf35c14df") center/cover no-repeat;
-    filter: blur(6px) brightness(0.9);
-    z-index:-3;
-}
-
-.overlay{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.8));
-    z-index:-2;
-}
-
-/* 🌸 Elementos flotantes */
-.floating{
-    position:fixed;
-    pointer-events:none;
-    animation: float linear infinite;
-    z-index:0;
-}
-
-@keyframes float{
-    from{
-        transform:translateY(100vh) rotate(0deg);
-        opacity:0;
-    }
-    10%{opacity:1;}
-    90%{opacity:1;}
-    to{
-        transform:translateY(-10vh) rotate(360deg);
-        opacity:0;
-    }
+    inset:0;
+    background:rgba(255,255,255,0.35);
+    backdrop-filter:blur(3px);
+    z-index:-1;
 }
 
 .container{
-    padding:60px 20px;
-    position:relative;
-    z-index:2;
+    max-width:1000px;
+    margin:0 auto;
+    padding:80px 20px 120px 20px;
+    text-align:center;
 }
+
+/* ===== TEXTOS ===== */
 
 h1{
-    color:#b25c7a;
-    font-size:38px;
+    font-family:'Great Vibes', cursive;
+    font-size:58px;
+    color:#5b8f55;
+    margin-bottom:15px;
 }
 
-h2{
-    color:#7a5c6d;
-    font-weight:400;
+.intro{
+    font-size:20px;
+    color:#3d6b49;
 }
 
-p{
-    color:#5e5560;
-    font-size:17px;
-    max-width:750px;
-    margin:18px auto;
-    line-height:1.7;
+.contador{
+    margin-top:15px;
+    font-size:18px;
+    color:#3d6b49;
 }
 
-/* 🌟 CARRUSEL 3D AJUSTADO */
-.carousel-wrapper{
+/* ===== CARRUSEL PERFECTAMENTE AJUSTADO ===== */
+
+.carrusel-container{
+    margin:100px 0 100px 0; /* ESPACIO REAL */
     display:flex;
     justify-content:center;
-    align-items:center;
-    margin:60px 0;
-    perspective:1200px;
+    perspective:1600px;
 }
 
-.carousel{
+.carrusel{
     position:relative;
-    width:220px;
-    height:280px;
+    width:260px;
+    height:330px;
     transform-style:preserve-3d;
-    animation:rotate 25s infinite linear;
+    animation:rotar 40s linear infinite;
 }
 
-.carousel:hover{
-    animation-play-state:paused;
-}
-
-.carousel img{
+/* IMÁGENES MÁS PEQUEÑAS Y PROPORCIONADAS */
+.carrusel img{
     position:absolute;
-    width:180px;
-    height:240px;
+    width:200px;
+    height:280px;
     object-fit:cover;
     border-radius:18px;
-    box-shadow:0 15px 30px rgba(0,0,0,0.2);
+    box-shadow:0 12px 30px rgba(0,0,0,0.25);
     left:50%;
     top:50%;
     transform-origin:center center;
 }
 
-@keyframes rotate{
-    from{transform:rotateY(0deg);}
-    to{transform:rotateY(360deg);}
+/* ROTACIÓN SUAVE */
+@keyframes rotar{
+    from{ transform:rotateY(0deg); }
+    to{ transform:rotateY(360deg); }
 }
 
+.frase{
+    max-width:650px;
+    margin:0 auto;
+    font-size:18px;
+    line-height:1.8;
+    color:#2f5d3b;
+}
+
+.mensaje-extra{
+    margin-top:25px;
+    font-weight:600;
+    font-size:18px;
+    color:#2f5d3b;
+}
+
+/* ===== ELEMENTOS FLOTANTES ===== */
+
+.flotando{
+    position:fixed;
+    bottom:-50px;
+    font-size:18px;
+    animation:subir 15s linear infinite;
+    opacity:0.85;
+    pointer-events:none;
+}
+
+@keyframes subir{
+    from{transform:translateY(0);}
+    to{transform:translateY(-120vh);}
+}
+
+#botonMusica{
+    margin-top:40px;
+    padding:12px 30px;
+    border-radius:25px;
+    border:none;
+    background:#a7d7a7;
+    color:#2d4a2d;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+#botonMusica:hover{
+    background:#8ecf8e;
+}
 </style>
 </head>
 
 <body>
 
-<div class="background"></div>
-<div class="overlay"></div>
-
 <div class="container">
 
-<h1>Eres calma, eres luz, eres vida.</h1>
-<h2>Han pasado <span id="contador"></span> días desde que comenzó nuestra historia 🤍</h2>
+<h1>Feliz Día de la Mujer, Mi Niña 🤍</h1>
 
-<div class="carousel-wrapper">
-    <div class="carousel" id="carousel">
-        <img src="30.jpeg">
-        <img src="33.jpeg">
-        <img src="35.jpeg">
-        <img src="42.jpeg">
-        <img src="44.jpeg">
-        <img src="45.jpeg">
-        <img src="49.jpeg">
-        <img src="50.jpeg">
-        <img src="54.jpeg">
-        <img src="55.jpeg">
-    </div>
+<div class="intro">Eres calma, eres luz, eres vida.</div>
+
+<div class="contador" id="contador"></div>
+
+<div class="carrusel-container">
+    <div class="carrusel" id="carrusel"></div>
 </div>
 
-<p>
-Mi amor, hay fechas que simplemente se quedan tatuadas en el alma. 
-El 9 de marzo de 2024 no es solo un día en el calendario… 
-es el momento exacto en que mi corazón empezó a latir diferente. 
-Desde entonces todo tiene más color, más sentido y más verdad. 
-Hoy celebro la mujer increíble que eres: fuerte, dulce, valiente y luminosa. 
-Gracias por existir y por haber cambiado mi vida desde aquel día que marcó nuestro comienzo.
-</p>
+<div class="frase">
+Desde el 9 de marzo de 2024 mi corazón aprendió una nueva forma de amar.
+Contigo todo se siente más libre, más bonito, más verdadero.
+</div>
+
+<div class="mensaje-extra">
+Hoy celebro tu esencia, tu fuerza tranquila y la mujer increíble que eres 🤍
+</div>
+
+<button id="botonMusica">🌿 Activar música</button>
 
 </div>
+
+<audio id="musica" loop>
+<source src="no hay problema.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 
-/* Contador */
-const inicio = new Date("March 9, 2024");
-const hoy = new Date();
-const dias = Math.floor((hoy - inicio)/(1000*60*60*24));
-document.getElementById("contador").innerText = dias;
+/* =========================================================
+   CAMBIA AQUÍ LOS NOMBRES DE TUS IMÁGENES (.jpeg)
+========================================================= */
 
-/* Configurar carrusel 3D */
-const carousel = document.getElementById("carousel");
-const images = carousel.querySelectorAll("img");
-const total = images.length;
-const angle = 360/total;
-const radius = 300;
+const imagenes = [
+"30.jpeg",
+"33.jpeg",
+"35.jpeg",
+"42.jpeg",
+"44.jpeg",
+"45.jpeg",
+"49.jpeg",
+"50.jpeg",
+"54.jpeg",
+"55.jpeg"
+];
 
-images.forEach((img,i)=>{
-    img.style.transform=`rotateY(${i*angle}deg) translateZ(${radius}px) translate(-50%, -50%)`;
+/* ========================================================= */
+
+const carrusel = document.getElementById("carrusel");
+const cantidad = imagenes.length;
+const angulo = 360 / cantidad;
+
+/* CÁLCULO EXACTO DEL RADIO PARA QUE NO SE MONTEN */
+const ancho = 200;
+const radio = (ancho / 2) / Math.tan(Math.PI / cantidad) + 5;
+
+imagenes.forEach((src, i) => {
+    const img = document.createElement("img");
+    img.src = src;
+
+    img.style.transform = `
+        translate(-50%, -50%)
+        rotateY(${i * angulo}deg)
+        translateZ(${radio}px)
+    `;
+
+    carrusel.appendChild(img);
 });
 
-/* 🌸 Corazones y flores flotando */
-const icons = ["🤍","🌷","🌸","🌿","💗"];
+/* CONTADOR */
+const fechaInicio = new Date(2024, 2, 9);
 
-setInterval(()=>{
-    const element=document.createElement("div");
-    element.className="floating";
-    element.innerHTML=icons[Math.floor(Math.random()*icons.length)];
-    element.style.left=Math.random()*100+"vw";
-    element.style.fontSize=(20+Math.random()*25)+"px";
-    element.style.animationDuration=(8+Math.random()*8)+"s";
-    document.body.appendChild(element);
+function actualizarContador(){
+    const ahora = new Date();
+    const diferencia = ahora - fechaInicio;
+    const dias = Math.floor(diferencia / (1000*60*60*24));
+    document.getElementById("contador").innerHTML =
+    "Han pasado " + dias + " días desde que comenzó nuestra historia 🤍";
+}
+actualizarContador();
+setInterval(actualizarContador,1000);
 
-    setTimeout(()=>{element.remove();},15000);
-},800);
+/* MÚSICA */
+const musica = document.getElementById("musica");
+musica.volume = 0.3;
+
+document.getElementById("botonMusica").addEventListener("click", function(){
+    musica.play();
+    this.style.display="none";
+});
+
+/* FLORES Y CORAZONES */
+function crearElemento(){
+    const elemento=document.createElement("div");
+    elemento.classList.add("flotando");
+
+    const simbolos=["🌸","🌿","🤍","🍃"];
+    elemento.innerHTML=simbolos[Math.floor(Math.random()*simbolos.length)];
+
+    elemento.style.left=Math.random()*100+"vw";
+
+    document.body.appendChild(elemento);
+    setTimeout(()=>{elemento.remove();},15000);
+}
+setInterval(crearElemento,1300);
 
 </script>
 
